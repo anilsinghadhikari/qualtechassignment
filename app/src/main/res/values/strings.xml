@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">QualtechAssignment</string>
+    <string name="title_signup">SignUp</string>
+    <string name="title_home">Home</string>
+    <string name="validation_username">Please enter your name</string>
+    <string name="validation_email">Email is required</string>
+    <string name="validation_mobileno">Mobile no is required</string>
+</resources>
