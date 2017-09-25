@@ -1,11 +1,17 @@
 package com.android.qualtechassignment
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.android.qualtechassignment.data.UserBean
+import com.android.qualtechassignment.mywidgets.CustomSubmitButton
 import com.android.qualtechassignment.presenters.SignUpPresenterImpl
+import com.android.qualtechassignment.utlities.ErrorMsg
 import com.android.qualtechassignment.utlities.NavigationUtil
 import com.android.qualtechassignment.utlities.Utility
 import com.android.qualtechassignment.views.SignUpView
+import com.android.watchoveryou.utility.AnimUtil
+import com.android.watchoveryou.utility.ErrorViewUtil
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : BaseActivity(), SignUpView {
@@ -32,21 +38,39 @@ class SignUpActivity : BaseActivity(), SignUpView {
     }
 
     override fun showErrorMsg(errorMsg: String) {
-
+        ErrorViewUtil.showErrorDialog(this, ErrorMsg.ERROR_TITLE, errorMsg)
     }
 
-    //    private val signUpButtobn: CustomSubmitButton by bind(R.id.signUpButtobn)
-//    private val signUpWidget: SignUpWidget by bind(R.id.signUpWidget)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val signUpPresenterImpl = SignUpPresenterImpl(this)
+        signUpButton.setCustomClickListener(object : CustomSubmitButton.OnCustomClickLister {
+            override fun onButtonClick() {
+                signUpPresenterImpl.validateUserData(UserBean(signUpWidget.getUserName(), signUpWidget.getEmailID(), signUpWidget.getMobileNo()))
 
-        signUpButton.setOnClickListener {
-            signUpPresenterImpl.validateUserData(UserBean(signUpWidget.getUserName(), signUpWidget.getEmailID(), signUpWidget.getMobileNo()))
+            }
 
-        }
+        })
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_home, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.getItemId() == R.id.action_profile) {
+
+
+
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
 }

@@ -18,10 +18,10 @@ object Utility {
         return if (TextUtils.isEmpty(email)) false else android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun isValidNo(mobileNo: String): Boolean {
+    fun isValidNo(mobileNo: String?): Boolean {
         if (TextUtils.isEmpty(mobileNo))
             return false
-        return mobileNo.length == 10
+        return mobileNo?.length == 10
     }
 
     fun closeKeyBoard(view: View?) {
@@ -36,7 +36,8 @@ object Utility {
 
     }
 
-    fun getStringFromResource(resName: Int): String {
-        return MyApplication.getInstance()?.applicationContext?.getString(resName)!!
+    fun getStringFromResource(resID: Int): String {
+        val applicationContext = MyApplication.getInstance()?.applicationContext
+        return applicationContext?.resources?.getString(resID).toString()
     }
 }

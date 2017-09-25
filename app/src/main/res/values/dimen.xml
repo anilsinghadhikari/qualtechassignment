@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="button_hight">55dp</dimen>
+    <dimen name="profile_padding">10dp</dimen>
+    <dimen name="profile_image_height">130dp</dimen>
 
 </resources>

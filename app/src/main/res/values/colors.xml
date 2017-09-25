@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="fontColor">#ffffff</color>
     <color name="titlefontColor">@color/fontColor</color>
+    <color name="hintcolor_validation">#cc4444</color>
+    <color name="white">#ffffff</color>
+    <color name="color_grey">#EDEDED</color>
+    <color name="color_black">#000000</color>
+
 </resources>

@@ -7,18 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.android.qualtechassignment.R
+import com.android.qualtechassignment.utlities.Logger
 import kotlinx.android.synthetic.main.custom_button_layout.view.*
 
 
 class CustomSubmitButton : FrameLayout {
     private var mContext: Context? = null
     private var attrs: AttributeSet? = null
+    private lateinit var onCustomClickListener: OnCustomClickLister
 
-    /* private val progressContainerLayout: LinearLayout by bind(R.id.progressContainerLayout)
-     private val progressBar: LinearLayout by bind(R.id.progressBar)
-     private val messageTextView: TextView by bind(R.id.messageTextView)
-     private val submitButton: Button by bind(R.id.submitButton)
- */
     init {
         this.mContext = context
         this.attrs = attrs
@@ -36,11 +33,24 @@ class CustomSubmitButton : FrameLayout {
         val inflater = mContext?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(R.layout.custom_button_layout, this, true)
 
-
-        topClickableLayout.setOnClickListener {
-//            Erro
-
+        submitButton.setOnClickListener {
+            Logger.d("inside CustomSubmitButton click")
+            topClickableLayout.performClick()
+            if (onCustomClickListener != null) {
+                onCustomClickListener.onButtonClick()
+            }
         }
+
+
+    }
+
+    public fun setCustomClickListener(onCustomClickListener: OnCustomClickLister) {
+        this.onCustomClickListener = onCustomClickListener
+
+    }
+
+    interface OnCustomClickLister {
+        fun onButtonClick()
 
     }
 

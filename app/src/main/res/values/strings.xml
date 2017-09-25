@@ -2,7 +2,10 @@
     <string name="app_name">QualtechAssignment</string>
     <string name="title_signup">SignUp</string>
     <string name="title_home">Home</string>
+    <string name="title_profile">Home</string>
     <string name="validation_username">Please enter your name</string>
     <string name="validation_email">Email is required</string>
+    <string name="validation_email_required">Email is not valid</string>
     <string name="validation_mobileno">Mobile no is required</string>
+    <string name="validation_mobileno_10_digit">Mobile no is not valid. It should be 10 digit long</string>
 </resources>

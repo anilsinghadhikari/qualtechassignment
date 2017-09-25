@@ -18,8 +18,8 @@ class HomeInteractorImpl : IHomeInteractor {
         WebServiceUtil.fetchDataFromWebService(WebURL.API_COUNTRIES, object : NetworkResponseCallback {
             override fun onSuccess(response: String) {
                 val gson = Gson()
-                val countryResponce = gson.fromJson(response, CountryResponse::class.java)
-                listener.onSuccess(countryResponce)
+//                val countryResponce = gson.fromJson(response, CountryResponse::class.java)
+//                listener.onSuccess(countryResponce)
 
             }
 

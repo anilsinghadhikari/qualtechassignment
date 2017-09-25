@@ -2,7 +2,6 @@ package com.android.qualtechassignment.presenters
 
 import android.text.TextUtils
 import com.android.qualtechassignment.R
-import com.android.qualtechassignment.SignUpActivity
 import com.android.qualtechassignment.data.UserBean
 import com.android.qualtechassignment.model.ISignUpInteractor
 import com.android.qualtechassignment.model.SignUpInteractorImpl
@@ -23,6 +22,9 @@ class SignUpPresenterImpl(var signUpView: SignUpView) : ISignUpPresenter, ISignU
 
     override fun onSuccess() {
         signUpView.hideProgress()
+        signUpView.navigateToHomeActivity()
+
+
     }
 
     override fun validateUserData(userDataClass: UserBean) {
@@ -30,16 +32,19 @@ class SignUpPresenterImpl(var signUpView: SignUpView) : ISignUpPresenter, ISignU
             signUpView.showErrorMsg(Utility.getStringFromResource(R.string.validation_username))
             return
         }
-        if (TextUtils.isEmpty(userDataClass.email)) {
-            signUpView.showErrorMsg(Utility.getStringFromResource(R.string.validation_email))
-            return
-        }
-        if (TextUtils.isEmpty(userDataClass.phoneNo)) {
-            signUpView.showErrorMsg(Utility.getStringFromResource(R.string.validation_mobileno))
+        if (!Utility.validEmail(userDataClass.email)) {
+            signUpView.showErrorMsg(Utility.getStringFromResource(R.string.validation_email_required))
             return
         }
 
+        if (!Utility.isValidNo(userDataClass.mobileNo)) {
+            signUpView.showErrorMsg(Utility.getStringFromResource(R.string.validation_mobileno_10_digit))
+            return
+        }
+
+
         iSignUpInteractor = SignUpInteractorImpl()
+        signUpView.showProgress()
         iSignUpInteractor?.signUp(userDataClass, this)
     }
 

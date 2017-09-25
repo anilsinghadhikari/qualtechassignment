@@ -7,8 +7,10 @@ import com.android.qualtechassignment.responses.CountryResponse
 import com.android.qualtechassignment.utlities.Utility
 import com.android.qualtechassignment.utlities.bind
 import com.android.qualtechassignment.views.HomeView
+import com.android.watchoveryou.adapters.GeneralNotificationListAdapter
 
 class HomeActivity : BaseActivity(), HomeView {
+
     override fun setContent() {
         setContentView(R.layout.activity_home)
     }
@@ -16,7 +18,7 @@ class HomeActivity : BaseActivity(), HomeView {
     private val countryRecyclerView by bind<RecyclerView>(R.id.countryrecyclerView)
 
     override fun showCountryToUI(countryResponse: CountryResponse) {
-//        countryRecyclerView.adapter = GeneralNotificationListAdapter(this, countryResponse)
+//        countryRecyclerView?.adapter = GeneralNotificationListAdapter(this, countryResponse)
     }
 
     override fun showProgress() {
@@ -37,6 +39,8 @@ class HomeActivity : BaseActivity(), HomeView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         val homePresenterImpl = HomePresenterImpl(this)
         homePresenterImpl.fetchCountryData()
 
