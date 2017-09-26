@@ -2,8 +2,11 @@ package com.android.qualtechassignment
 
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.view.Menu
+import android.view.MenuItem
 import com.android.qualtechassignment.presenters.HomePresenterImpl
 import com.android.qualtechassignment.responses.CountryResponse
+import com.android.qualtechassignment.utlities.NavigationUtil
 import com.android.qualtechassignment.utlities.Utility
 import com.android.qualtechassignment.utlities.bind
 import com.android.qualtechassignment.views.HomeView
@@ -43,6 +46,23 @@ class HomeActivity : BaseActivity(), HomeView {
 
         val homePresenterImpl = HomePresenterImpl(this)
         homePresenterImpl.fetchCountryData()
+
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_home, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item?.getItemId() == R.id.action_profile) {
+            NavigationUtil.openProfileActivity(this)
+
+        }
+        return super.onOptionsItemSelected(item)
 
 
     }

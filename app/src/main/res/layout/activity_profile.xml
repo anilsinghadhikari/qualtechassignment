@@ -35,9 +35,7 @@
                         android:id="@+id/userProfileImageView"
                         android:layout_width="@dimen/profile_image_height"
                         android:layout_height="@dimen/profile_image_height"
-
-                        />
-
+                        android:src="@drawable/profilepic" />
                 </LinearLayout>
 
 
@@ -63,9 +61,11 @@
                             android:text="Name" />
 
                         <EditText
-                            android:id="@+id/nameEditText"
+                            android:id="@+id/nameEditTextProfile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
                             android:text=""
                             android:textColor="@color/color_black" />
 
@@ -85,9 +85,11 @@
                             android:text="Email" />
 
                         <EditText
-                            android:id="@+id/emailEditText"
+                            android:id="@+id/emailEditTextProfile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
                             android:text="" />
 
                         <LinearLayout
@@ -102,13 +104,40 @@
                                 android:text="Mobile" />
 
                             <EditText
-                                android:id="@+id/mobileTextView"
+                                android:id="@+id/mobileEditTextProfile"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:imeOptions="actionDone"
+                                android:singleLine="true"
                                 android:text="" />
 
 
                         </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:tag="Reference No">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Reference Phone no" />
+
+                            <EditText
+                                android:id="@+id/refMobileEditTextProfile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:editable="false"
+                                android:imeOptions="actionDone"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

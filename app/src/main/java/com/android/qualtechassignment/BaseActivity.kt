@@ -29,7 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun setUpToolbar() {
         setSupportActionBar(toolbar)
         val supportActionBar = supportActionBar
-        if (this is SignUpActivity) {
+        if (this is SignUpActivity || this is HomeActivity) {
             supportActionBar?.setHomeButtonEnabled(false)
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
         } else {

@@ -51,7 +51,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:hint="Mobile"
+        android:hint="10 digit Mobile no"
         android:imeOptions="actionDone"
         android:inputType="number"
         android:singleLine="true"

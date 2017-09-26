@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.android.qualtechassignment.database.SqliteDbHelper
 import com.android.qualtechassignment.myapplication.MyApplication
 
 /**
@@ -39,5 +40,16 @@ object Utility {
     fun getStringFromResource(resID: Int): String {
         val applicationContext = MyApplication.getInstance()?.applicationContext
         return applicationContext?.resources?.getString(resID).toString()
+    }
+
+    fun isUserLoggedInOrSignedUp(): Boolean {
+
+        val userData = SqliteDbHelper.getInstance()?.getUserData()
+        if (userData != null && !TextUtils.isEmpty(userData.email)) {
+            return true
+        }
+
+        return false
+
     }
 }

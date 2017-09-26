@@ -7,7 +7,7 @@
     tools:context="com.android.qualtechassignment.LoginActivity">
 
     <TextView
-        android:id="@+id/nameEditText"
+        android:id="@+id/nameEditTextLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailEditTextLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
     <TextView
-        android:id="@+id/phoneEditText"
+        android:id="@+id/phoneEditTextLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

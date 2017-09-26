@@ -18,4 +18,8 @@ public class ErrorMsg {
     public static String READ_CONTACT_PERMISSION_REQUIRED = "You must grant this permission to use this feature.";
     @NotNull
     public static final String UNKNOWN_ERROR_WHILE_SENDING_SOS = "Some error occured while sending your SOS. Please retry";
+    @NotNull
+    public static final String Profile_update_success = "Profile Updated successfully";
+    @NotNull
+    public static final String PHONE_NO_NOT_AVAILABLE = "No phone number is associated with this contact";
 }

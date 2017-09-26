@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.android.qualtechassignment.utlities.NavigationUtil
+import com.android.qualtechassignment.utlities.Utility
 
 class SplashActivity : AppCompatActivity() {
 
@@ -15,7 +16,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         handler = Handler()
         var r = Runnable {
-            NavigationUtil.openSignUpActivity(this)
+            if (Utility.isUserLoggedInOrSignedUp()) {
+                NavigationUtil.openHomeActivity(this)
+            } else {
+                NavigationUtil.openSignUpActivity(this)
+            }
             finish()
         }
         handler?.postDelayed(r, DURATION)

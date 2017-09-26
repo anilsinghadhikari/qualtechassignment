@@ -56,21 +56,5 @@ class SignUpActivity : BaseActivity(), SignUpView {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.getItemId() == R.id.action_profile) {
-
-
-
-        }
-        return super.onOptionsItemSelected(item)
-
-    }
 
 }
