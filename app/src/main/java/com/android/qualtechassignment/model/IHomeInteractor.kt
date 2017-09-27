@@ -10,7 +10,7 @@ interface IHomeInteractor {
     interface OnCountryDataFetchedListener {
         fun onFailure(msg: String = "Unknown error")
 
-        fun onSuccess(countryResponce: CountryResponse)
+        fun onSuccess(list: ArrayList<CountryResponse>)
     }
 
     fun fetchCountry(listener: OnCountryDataFetchedListener)

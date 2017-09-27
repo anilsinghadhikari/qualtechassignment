@@ -9,11 +9,6 @@ import kotlinx.android.synthetic.main.content_toolbar.*
  * This activity takes care of setting up tool bar for all concreate activity
  */
 abstract class BaseActivity : AppCompatActivity() {
-//    val toolbar: Toolbar by bind(R.id.toolbar)
-
-    /*open abstract fun getContent(): Int
-
-    */
 
     open abstract fun setContent()
 
@@ -36,8 +31,8 @@ abstract class BaseActivity : AppCompatActivity() {
             supportActionBar?.setHomeButtonEnabled(true)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
-        //        supportActionBar.setDefaultDisplayHomeAsUpEnabled(true);
-//        setTitle(getToolBarTitle())
+
+        supportActionBar?.setTitle(getToolBarTitle())
     }
 
 

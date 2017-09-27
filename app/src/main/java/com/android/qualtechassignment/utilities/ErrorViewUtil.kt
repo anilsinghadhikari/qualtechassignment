@@ -7,7 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.android.qualtechassignment.R
-import com.android.qualtechassignment.utlities.ErrorMsg
+import com.android.qualtechassignment.utilities.ErrorMsg
 
 /**
  * Created by qainfotech on 12/4/16.

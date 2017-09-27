@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.android.qualtechassignment.data.UserBean
 import com.android.qualtechassignment.myapplication.MyApplication
-import com.android.qualtechassignment.utlities.Logger
+import com.android.qualtechassignment.utilities.Logger
+import com.android.qualtechassignment.utilities.Utility
 
 /**
  * Created by t on 9/23/2017.
@@ -14,7 +15,7 @@ import com.android.qualtechassignment.utlities.Logger
 class SqliteDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
     companion object {
-        private val DB_NAME = MyApplication.getInstance()?.packageName
+        private val DB_NAME = Utility.getPackageName()
         private val DB_VERSION = 1
         private val ID: String = "_id"
         private val NAME: String = "name"
@@ -26,7 +27,8 @@ class SqliteDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, nul
 
         private var dbInstance: SqliteDbHelper? = null
 
-        public fun getInstance(): SqliteDbHelper? {
+        @Synchronized
+        fun getInstance(): SqliteDbHelper? {
             if (dbInstance == null) {
                 dbInstance = SqliteDbHelper(MyApplication.getInstance()?.applicationContext)
             }
@@ -97,5 +99,11 @@ class SqliteDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, nul
         userBean.profileImagePath = cursor.getString(cursor.getColumnIndex(PROFILE_IMG_PATH))
         userBean.refContactNo = cursor.getString(cursor.getColumnIndex(REF_CONTACT))
         return userBean
+    }
+
+    fun clearUserTable() {
+        writableDatabase.delete(TABLE_USER, null, null) // we are deleting existing entries as we'll have only single user entry i this table
+
+
     }
 }

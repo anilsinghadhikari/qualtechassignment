@@ -1,6 +1,4 @@
-package com.android.qualtechassignment.utlities;
-
-import org.jetbrains.annotations.NotNull;
+package com.android.qualtechassignment.utilities;
 
 /**
  * Created by qainfotech on 13/4/16.
@@ -16,10 +14,8 @@ public class ErrorMsg {
     public static String ERROR_CONTACT_NOT_SYNC = "Some error occured. Failed syncing contactsFromPhoneBook";
     public static String OnFailureTitle = "Failure!";
     public static String READ_CONTACT_PERMISSION_REQUIRED = "You must grant this permission to use this feature.";
-    @NotNull
     public static final String UNKNOWN_ERROR_WHILE_SENDING_SOS = "Some error occured while sending your SOS. Please retry";
-    @NotNull
     public static final String Profile_update_success = "Profile Updated successfully";
-    @NotNull
     public static final String PHONE_NO_NOT_AVAILABLE = "No phone number is associated with this contact";
+    public static final String IN_EDIT_MODE = "You are in edit mode, your changes won't be saved. Are you sure you want to discard your changes?";
 }

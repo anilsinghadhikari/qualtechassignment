@@ -1,4 +1,4 @@
-package com.android.qualtechassignment.utlities
+package com.android.qualtechassignment.utilities
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -42,7 +42,11 @@ object Utility {
         return applicationContext?.resources?.getString(resID).toString()
     }
 
-    fun isUserLoggedInOrSignedUp(): Boolean {
+    fun getPackageName(): String? {
+        return MyApplication.getInstance()?.applicationContext?.packageName
+    }
+
+     fun isUserLoggedInOrSignedUp(): Boolean {
 
         val userData = SqliteDbHelper.getInstance()?.getUserData()
         if (userData != null && !TextUtils.isEmpty(userData.email)) {

@@ -1,23 +1,25 @@
 package com.android.watchoveryou.adapters
 
 import android.app.Activity
+import android.support.v7.widget.ButtonBarLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.Button
+import android.widget.ImageButton
 import com.android.qualtechassignment.R
 import com.android.qualtechassignment.responses.CountryResponse
+import com.android.qualtechassignment.utilities.NavigationUtil
+import com.google.gson.Gson
 import java.util.*
-import kotlinx.android.synthetic.main.country_adpater_item_layout.*
 import kotlinx.android.synthetic.main.country_adpater_item_layout.view.*
 
 /**
  * Created by qainfotech on 18/8/17.
  */
 
-class GeneralNotificationListAdapter(private val mContext: Activity, var countryList: ArrayList<CountryResponse>?) : RecyclerView.Adapter<GeneralNotificationListAdapter.CountryItemViewHolder>() {
+class CountryListAdapter(private val mContext: Activity, var countryList: ArrayList<CountryResponse>?) : RecyclerView.Adapter<CountryListAdapter.CountryItemViewHolder>() {
     override fun getItemCount(): Int {
 
         return countryList?.size!!
@@ -35,10 +37,20 @@ class GeneralNotificationListAdapter(private val mContext: Activity, var country
     override fun onBindViewHolder(viewHolder: CountryItemViewHolder?, position: Int) {
         val countryResponse = countryList!![position]
 
-        viewHolder?.bindCountryCode(countryResponse.callingCodes.toString()!!)
         viewHolder?.bindCountryName(countryResponse.name!!)
+        viewHolder?.bindCountryCode("Region: " + countryResponse.region.toString()!! + " Subregion: " + countryResponse.subregion.toString()!!)
 
         viewHolder?.itemLayoutView?.setOnClickListener {
+            val gson = Gson()
+            NavigationUtil.openCountryDetailActivity(mContext, gson.toJson(countryResponse))
+
+        }
+
+        viewHolder?.getDeleteButton()?.setOnClickListener {
+            countryList?.removeAt(position)
+            if (position != null) {
+                notifyItemRemoved(position)
+            }
 
         }
     }
@@ -53,6 +65,10 @@ class GeneralNotificationListAdapter(private val mContext: Activity, var country
 
         fun bindCountryCode(countryCode: String) {
             itemLayoutView.countryCode.text = countryCode
+        }
+
+        fun getDeleteButton(): ImageButton? {
+            return itemLayoutView.deleteImageBtn
         }
 
 

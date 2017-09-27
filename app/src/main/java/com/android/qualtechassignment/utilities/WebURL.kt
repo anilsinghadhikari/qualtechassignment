@@ -1,4 +1,4 @@
-package com.android.qualtechassignment.utlities
+package com.android.qualtechassignment.utilities
 
 /**
  * Created by t on 9/24/2017.

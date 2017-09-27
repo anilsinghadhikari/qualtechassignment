@@ -1,16 +1,13 @@
 package com.android.qualtechassignment
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.android.qualtechassignment.data.UserBean
 import com.android.qualtechassignment.mywidgets.CustomSubmitButton
 import com.android.qualtechassignment.presenters.SignUpPresenterImpl
-import com.android.qualtechassignment.utlities.ErrorMsg
-import com.android.qualtechassignment.utlities.NavigationUtil
-import com.android.qualtechassignment.utlities.Utility
+import com.android.qualtechassignment.utilities.ErrorMsg
+import com.android.qualtechassignment.utilities.NavigationUtil
+import com.android.qualtechassignment.utilities.Utility
 import com.android.qualtechassignment.views.SignUpView
-import com.android.watchoveryou.utility.AnimUtil
 import com.android.watchoveryou.utility.ErrorViewUtil
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -21,7 +18,9 @@ class SignUpActivity : BaseActivity(), SignUpView {
     }
 
     override fun navigateToHomeActivity() {
+        ErrorViewUtil.showToast(this@SignUpActivity, "Profile created successfully.")
         NavigationUtil.openHomeActivity(this)
+        finish()
     }
 
     override fun getToolBarTitle(): String {

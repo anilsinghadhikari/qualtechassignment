@@ -14,7 +14,7 @@ class SignUpInteractorImpl : ISignUpInteractor {
             listener.onSuccess()
             SqliteDbHelper.getInstance()?.saveUserData(userBean)
 
-        }, 3000)
+        }, 1500)
     }
 
 }

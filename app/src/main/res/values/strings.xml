@@ -8,4 +8,5 @@
     <string name="validation_email_required">Email is not valid</string>
     <string name="validation_mobileno">Mobile no is required</string>
     <string name="validation_mobileno_10_digit">Mobile no is not valid. It should be 10 digit long</string>
+    <string name="title_country_detail">Country Detail</string>
 </resources>

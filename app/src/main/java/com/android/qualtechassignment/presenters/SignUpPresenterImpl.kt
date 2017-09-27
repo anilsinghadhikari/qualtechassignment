@@ -5,7 +5,7 @@ import com.android.qualtechassignment.R
 import com.android.qualtechassignment.data.UserBean
 import com.android.qualtechassignment.model.ISignUpInteractor
 import com.android.qualtechassignment.model.SignUpInteractorImpl
-import com.android.qualtechassignment.utlities.Utility
+import com.android.qualtechassignment.utilities.Utility
 import com.android.qualtechassignment.views.SignUpView
 
 /**

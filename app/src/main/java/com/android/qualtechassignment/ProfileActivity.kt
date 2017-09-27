@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -19,11 +18,10 @@ import android.view.Menu
 import android.view.MenuItem
 import com.android.qualtechassignment.data.UserBean
 import com.android.qualtechassignment.database.SqliteDbHelper
-import com.android.qualtechassignment.utlities.ErrorMsg
-import com.android.qualtechassignment.utlities.NavigationUtil
-import com.android.qualtechassignment.utlities.Utility
+import com.android.qualtechassignment.utilities.ErrorMsg
+import com.android.qualtechassignment.utilities.NavigationUtil
+import com.android.qualtechassignment.utilities.Utility
 import com.android.watchoveryou.utility.ErrorViewUtil
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
@@ -69,31 +67,42 @@ class ProfileActivity : BaseActivity() {
         return true
     }
 
+    var isInEditMode = false
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        if (item?.getItemId() == R.id.action_edit) {
+        when (item?.getItemId()) {
+            R.id.action_edit -> {
 
-            if (item.title.equals("Edit")) {
-                enableDisableFileds(true)
-                item.setTitle("Update")
-            } else {
+                if (item.title.equals("Edit")) {
+                    enableDisableFileds(true)
+                    item.setTitle("Update")
+                    isInEditMode = true
+                } else {
 
-                val userBean = UserBean(nameEditTextProfile.text.toString(), emailEditTextProfile.text.toString(), mobileEditTextProfile.text.toString(), imageUri.toString(), refMobileEditTextProfile.text.toString())
-                val affetctedRows = SqliteDbHelper.getInstance()?.updateData(userBean)
-                if (affetctedRows != -1) {
-                    ErrorViewUtil.showToast(this, ErrorMsg.Profile_update_success)
+                    val userBean = UserBean(nameEditTextProfile.text.toString(), emailEditTextProfile.text.toString(), mobileEditTextProfile.text.toString(), imageUri.toString(), refMobileEditTextProfile.text.toString())
+                    val affetctedRows = SqliteDbHelper.getInstance()?.updateData(userBean)
+                    if (affetctedRows != -1) {
+                        ErrorViewUtil.showToast(this, ErrorMsg.Profile_update_success)
+                        enableDisableFileds(false)
+                        item.setTitle("Edit")
+
+                    }
+                    isInEditMode = false
                 }
             }
 
+            R.id.action_logout -> {
+                NavigationUtil.openSignUpActivity(this)
+                SqliteDbHelper.getInstance()?.clearUserTable()
+                ErrorViewUtil.showToast(this@ProfileActivity, "Your profile has been cleared from device.")
+                finish()
+            }
 
-            enableDisableFileds(true)
-
+            android.R.id.home -> {
+                onBackPressed()
+            }
         }
 
-        if (item?.getItemId() == R.id.action_logout) {
-            NavigationUtil.openProfileActivity(this)
-
-        }
         return super.onOptionsItemSelected(item)
 
 
@@ -201,6 +210,7 @@ class ProfileActivity : BaseActivity() {
         nameEditTextProfile.setText(userData?.userName)
         emailEditTextProfile.setText(userData?.email)
         mobileEditTextProfile.setText(userData?.mobileNo)
+        refMobileEditTextProfile.setText(userData?.refContactNo)
 
         if (!TextUtils.isEmpty(userData?.profileImagePath)) {
             userProfileImageView.setImageURI(Uri.parse(userData?.profileImagePath))
@@ -209,11 +219,15 @@ class ProfileActivity : BaseActivity() {
     }
 
     private fun enableDisableFileds(isEnabled: Boolean) {
+
         nameEditTextProfile.isEnabled = isEnabled
+        if (isEnabled) { // this is to show the cursor at end when user goes to edit mode
+            nameEditTextProfile.setSelection(nameEditTextProfile.text.length)
+        }
         emailEditTextProfile.isEnabled = isEnabled
         mobileEditTextProfile.isEnabled = isEnabled
         refMobileEditTextProfile.isClickable = isEnabled
-        refMobileEditTextProfile.isFocusableInTouchMode = true
+        userProfileImageView.isEnabled = isEnabled
     }
 
     private fun askForWriteToExternalStoragePermission() {
@@ -235,7 +249,7 @@ class ProfileActivity : BaseActivity() {
 
 
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        var bytes: ByteArrayOutputStream = ByteArrayOutputStream();
+        var bytes = ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         var path: String = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
@@ -256,6 +270,21 @@ class ProfileActivity : BaseActivity() {
 
         val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
         startActivityForResult(intent, PICK_CONTACT_CODE)
+
+    }
+
+    override fun onBackPressed() {
+
+        if (isInEditMode) {
+            ErrorViewUtil.showErrorDialogWithCancelButton(this@ProfileActivity, "Alert", ErrorMsg.IN_EDIT_MODE, object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    finish()
+                }
+
+            })
+        } else {
+            super.onBackPressed()
+        }
 
     }
 

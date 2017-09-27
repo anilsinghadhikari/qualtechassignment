@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.LinearLayout
 import com.android.qualtechassignment.R
-import com.android.qualtechassignment.utlities.Utility
+import com.android.qualtechassignment.utilities.Utility
 import kotlinx.android.synthetic.main.signup_widget_layout.view.*
 
 

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.android.qualtechassignment.R
-import com.android.qualtechassignment.utlities.Logger
+import com.android.qualtechassignment.utilities.Logger
 import kotlinx.android.synthetic.main.custom_button_layout.view.*
 
 

@@ -10,6 +10,6 @@ interface HomeView {
     fun showProgress()
     fun hideProgress()
     fun showErrorMsg(errorMsg: String)
-    fun showCountryToUI(countryResponse: CountryResponse)
+    fun showCountryToUI(list: ArrayList<CountryResponse>)
 
 }
