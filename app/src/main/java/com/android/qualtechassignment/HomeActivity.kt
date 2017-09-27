@@ -2,7 +2,6 @@ package com.android.qualtechassignment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,7 +10,6 @@ import com.android.qualtechassignment.responses.CountryResponse
 import com.android.qualtechassignment.utilities.ErrorMsg
 import com.android.qualtechassignment.utilities.NavigationUtil
 import com.android.qualtechassignment.utilities.Utility
-import com.android.qualtechassignment.utilities.bind
 import com.android.qualtechassignment.views.HomeView
 import com.android.watchoveryou.adapters.CountryListAdapter
 import kotlinx.android.synthetic.main.activity_home.*
@@ -22,8 +20,6 @@ class HomeActivity : BaseActivity(), HomeView {
     override fun setContent() {
         setContentView(R.layout.activity_home)
     }
-
-    private val countryRecyclerView by bind<RecyclerView>(R.id.countryrecyclerView)
 
     override fun showCountryToUI(list: ArrayList<CountryResponse>) {
 
