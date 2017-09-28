@@ -64,6 +64,7 @@ class SqliteDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, nul
         insertValues.put(PROFILE_IMG_PATH, userBean?.profileImagePath)
         insertValues.put(REF_CONTACT, userBean?.refContactNo)
         writableDatabase.insert(TABLE_USER, null, insertValues)
+        writableDatabase?.close()
     }
 
     fun updateData(userBean: UserBean?): Int {
@@ -77,7 +78,7 @@ class SqliteDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, nul
         writableDatabase.insert(TABLE_USER, null, updateValues)
         var affected = writableDatabase.update(TABLE_USER, updateValues, null, null);
         Logger.d("No of rows affected " + affected)
-
+        writableDatabase?.close()
         return affected
     }
 
@@ -98,12 +99,13 @@ class SqliteDbHelper(context: Context?) : SQLiteOpenHelper(context, DB_NAME, nul
         userBean.mobileNo = cursor.getString(cursor.getColumnIndex(MOBILE))
         userBean.profileImagePath = cursor.getString(cursor.getColumnIndex(PROFILE_IMG_PATH))
         userBean.refContactNo = cursor.getString(cursor.getColumnIndex(REF_CONTACT))
+        db?.close()
         return userBean
     }
 
     fun clearUserTable() {
         writableDatabase.delete(TABLE_USER, null, null) // we are deleting existing entries as we'll have only single user entry i this table
-
+        writableDatabase.close()
 
     }
 }
